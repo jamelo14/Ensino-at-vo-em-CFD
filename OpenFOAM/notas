@@ -1,0 +1,5 @@
+Existe a viscosidade molecular, que é o "atrito" entre as moléculas do fluido. No OpenFOAM, quando inserimos "simulationType e RASModel laminar" no dicionário "turbulenceProperties", estamos apenas dizendo que existe no caso APENAS a viscosidade molecular. Isso tamém significa -Por algum motivo- que não há simplificações -Como as de Boussineq- à serem feitas no caso.
+
+Quando a Aproximação de Flutuância de Boussinesq é usada, o solver não resolve a densidade. Para encontrar uma aproximação para a densidade relativa, é necessário inserir uma temperatura de referência "TRef" no dicionário "transportProperties".
+
+No solver "BuoyantBoussinesqPimpleFoam", é necessário dentro da pasta 0 os arquivos: p, p_rgh, T, U e alphat, Onde p_rgh = p - rho*g*h, isso é, p_rgh é a pressão dinâmica. o arquivo alphat necessita estar presente, mas caso o tipo de simulação for laminar, ele não será usado.

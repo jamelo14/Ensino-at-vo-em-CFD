@@ -1,0 +1,429 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     10.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// Conversão de unidades
+convertToMeters 0.001;
+
+// D [m] do corpo cilíndrico
+Diam 13.4;
+
+// malha
+Nblock 10;
+Nx 100;
+Nf 40;
+Na 10;
+Nb 15;
+Nin 10;
+Nout 30;
+Nblock 20;
+
+Nz 1;
+
+// Alguns cálculos
+doisNb #calc "2.0*$Nb";
+
+// dimensão de z
+maxZ 5.0;		
+minZ #calc "-1.0*$maxZ";
+
+// Inlet nipple var
+dec 20;
+le 60;
+let 24;
+ce 100;
+
+decNeg          #calc "-1.0*$dec";
+decMaisCeNeg    #calc "-1.0*($dec+$ce)";
+leMenosLetNeg   #calc "-1.0*($le - $let)";
+letMenosMeioLe  #calc "$let - 0.5*$le";
+
+
+// R [m] do cilindro
+radius          #calc "0.5*$Diam";
+radiusNeg 	#calc "-1.0*$radius";
+Angle 		      45.0;
+radAngle        #calc "degToRad($Angle)";
+
+halfRadAngle		#calc "($radAngle)/2";
+
+a               #calc "$radius*cos($radAngle)"; // Eixo x
+aNeg            #calc "-1.0*$a";                // Eixo -x
+b               #calc "$radius*sin($radAngle)"; // Eixo y
+bNeg            #calc "-1.0*$b";                // Eixo -y
+
+// R [m] do bloco
+radiusBlockCoef 1.3; // Coeficiente de raio do bloco de malha ao redor do cilindro em rel. ao cilindro 
+radiusBlock		#calc "$radiusBlockCoef*$radius";
+radiusBlockNeg  #calc "-1.0*$radiusBlock";
+
+c               #calc "$radiusBlock*cos($radAngle)"; // Eixo x
+cNeg            #calc "-1.0*$c";                     // Eixo -x
+d               #calc "$radiusBlock*sin($radAngle)"; // Eixo y 
+dNeg            #calc "-1.0*$d";                     // Eixo -y
+
+// Arcos
+halfAngle       #calc "($Angle)/2";
+radHalfAngle    #calc "degToRad($halfAngle)";
+
+// Cilindro
+e               #calc "$radius*cos($radHalfAngle)"; // Eixo x
+eNeg		#calc "-1.0*$e";                    // Eixo -x
+f               #calc "$radius*sin($radHalfAngle)"; // Eixo y 
+fNeg		#calc "-1.0*$f";                    // Eixo -y
+
+// Bloco
+g               #calc "$radiusBlock*cos($radHalfAngle)"; // Eixo x
+gNeg            #calc "-1.0*$g";                         // Eixo -x
+h               #calc "$radiusBlock*sin($radHalfAngle)"; // Eixo y 
+hNeg            #calc "-1.0*$h";                         // Eixo -y
+
+
+// Joao's
+radiusDominio 244.65;
+
+radiusDominioNeg #calc"-1.0*$radiusDominio";
+aDom      #calc "$radiusDominio*cos($radAngle)";
+bDom      #calc "$radiusDominio*sin($radAngle)";
+aDomNeg   #calc "-1.0*$aDom";
+bDomNeg   #calc "-1.0*$bDom";
+
+// Área da saida do fluido
+Asaida            283.5286;
+
+phi        #calc "($Asaida) / (2*$maxZ*$radiusDominio)";
+halfPhi    #calc "0.5*$phi";
+
+i          #calc "$radiusDominio*cos($halfPhi)";
+j          #calc "$radiusDominio*sin($halfPhi)";
+jNeg       #calc "-1.0*$j";
+
+k		   #calc "$radiusBlock*cos($halfRadAngle)";
+l		   #calc "$radiusBlock*sin($halfRadAngle)";
+lNeg	   #calc "-1.0*$l";
+
+vertices
+(
+    //Y positivo
+    ($radius              0                 $minZ)   // 0 A
+    ($radiusBlock         0                 $minZ)   // 1 B
+    ($c                   $d                $minZ)   // 2 C
+    ($a                   $b                $minZ)   // 3 D
+    (0                    $radiusBlock      $minZ)   // 4 E
+    (0                    $radius           $minZ)   // 5 F
+    ($radiusNeg           0                 $minZ)   // 6 G
+    ($radiusBlockNeg      0                 $minZ)   // 7 H
+    ($cNeg                $d                $minZ)   // 8 I
+    ($aNeg                $b                $minZ)   // 9 J
+   
+    ($radius              0                 $maxZ)   // 10 K
+    ($radiusBlock         0                 $maxZ)   // 11 L
+    ($c                   $d                $maxZ)   // 12 M
+    ($a                   $b                $maxZ)   // 13 N
+    (0                    $radiusBlock      $maxZ)   // 14 O
+    (0                    $radius           $maxZ)   // 15 P
+    ($radiusNeg           0                 $maxZ)   // 16 Q
+    ($radiusBlockNeg      0                 $maxZ)   // 17 R
+    ($cNeg                $d                $maxZ)   // 18 S
+    ($aNeg                $b                $maxZ)   // 19 T
+    
+    //Y negativo
+    ($c                   $dNeg             $minZ)  // 20 M1
+    ($a                   $bNeg             $minZ)  // 21 N1
+    (0                    $radiusBlockNeg   $minZ)  // 22 O1
+    (0                    $radiusNeg        $minZ)  // 23 P1
+    ($cNeg                $dNeg             $minZ)  // 24 Q1
+    ($aNeg                $bNeg             $minZ)  // 25 R1
+    
+    ($c                   $dNeg             $maxZ)  // 26 S1
+    ($a                   $bNeg             $maxZ)  // 27 T1
+    (0                    $radiusBlockNeg   $maxZ)  // 28 U1
+    (0                    $radiusNeg        $maxZ)  // 29 V1
+    ($cNeg                $dNeg             $maxZ)  // 30 W1
+    ($aNeg                $bNeg             $maxZ)  // 31 Z1
+    
+    // João's
+    // Dominio computacional
+    // Y positivo
+    ($aDom               $bDom              $maxZ)   // 32 V
+    (0                   $radiusDominio     $maxZ)   // 33 W
+    ($radiusDominioNeg   0                  $maxZ)   // 34 Z
+    ($aDomNeg            $bDom              $maxZ)   // 35 A1
+    ($aDom               $bDomNeg           $maxZ)   // 36 B1
+    (0                   $radiusDominioNeg  $maxZ)   // 37 C1
+    ($aDomNeg            $bDomNeg           $maxZ)   // 38 D1
+    
+    // Y negativo
+    ($aDom               $bDom              $minZ)   // 39 F1
+    (0                   $radiusDominio     $minZ)   // 40 G1
+    ($radiusDominioNeg   0                  $minZ)   // 41 H1
+    ($aDomNeg            $bDom              $minZ)   // 42 I1
+    ($aDom               $bDomNeg           $minZ)   // 43 J1
+    (0                   $radiusDominioNeg  $minZ)   // 44 K1
+    ($aDomNeg            $bDomNeg           $minZ)   // 45 L1
+    
+    // Bocal de entrada de fluido
+    ($decNeg              $let              $minZ)   // 46 A2
+    ($decMaisCeNeg        $let              $minZ)   // 47 B2
+    ($decMaisCeNeg        $leMenosLetNeg    $minZ)   // 48 C2
+    ($decNeg              $leMenosLetNeg    $minZ)   // 49 D2
+    ($decNeg              $let              $maxZ)   // 50 E2
+    ($decMaisCeNeg        $let              $maxZ)   // 51 F2
+    ($decMaisCeNeg        $leMenosLetNeg    $maxZ)   // 52 G2
+    ($decNeg              $leMenosLetNeg    $maxZ)   // 53 H2
+    
+    // Saida de fluido
+    ($i                   $j                $minZ)   // 54 I2
+    ($i                   $jNeg             $minZ)   // 55 J2
+    ($i                   $j                $maxZ)   // 56 K2
+    ($i                   $jNeg             $maxZ)   // 57 L2
+    
+    // Pontos adicionais
+    ($decMaisCeNeg        $letMenosMeioLe   $minZ)   // 58 
+    ($decMaisCeNeg        $letMenosMeioLe   $maxZ)   // 59
+
+    ($k					  $l				$minZ) 	 // 60	
+    ($k					  $l				$maxZ)	 // 61
+    ($k					  $lNeg				$minZ)   // 62
+    ($k					  $lNeg				$maxZ)   // 63
+);
+
+
+blocks
+(
+    //Bloco de malha
+    //up
+    hex (0 1 2 3 10 11 12 13)    ($Nblock $Nf $Nz) simpleGrading (1 1 1)   // 0
+    hex (3 2 4 5 13 12 14 15)    ($Nblock $Nf $Nz) simpleGrading (1 1 1)   // 1
+    hex (5 4 8 9 15 14 18 19)  ($Nblock $Nb $Nz) simpleGrading (1 1 1)   // 2
+    hex (9 8 7 6 19 18 17 16)  ($Nblock $Nb $Nz) simpleGrading (1 1 1)   // 3
+    
+    //down
+    hex (6 7 24 25 16 17 30 31) ($Nblock $Nb $Nz) simpleGrading (1 1 1)   // 4
+    hex (25 24 22 23 31 30 28 29) ($Nblock $Nb $Nz) simpleGrading (1 1 1)   // 5
+    hex (23 22 20 21 29 28 26 27) ($Nblock $Nf $Nz) simpleGrading (1 1 1)   // 6
+    hex (21 20 1 0 27 26 11 10)  ($Nblock $Nf $Nz) simpleGrading (1 1 1)   // 7
+    
+    // Entre a malha e o cilindro
+    // Entre a bocal e o cilindro
+    hex (8 46 49 24 18 50 53 30) ($Nx $doisNb $Nz) simpleGrading (1 1 1)   //8
+    
+    // entre a malha do cilindro e o outlet (malha triangular)
+    hex (62 55 54 60 63 57 56 61) ($Nx $Nf $Nz) simpleGrading   (1 1 1)   //9
+    
+    // resto
+    hex (60 54 39 2 61 56 32 12) ($Nx $Nf $Nz) simpleGrading  (1 1 1)   //10
+    hex (20 43 55 62 26 36 57 63) ($Nx $Nf $Nz) simpleGrading (1 1 1)   //11
+    
+    hex (2 39 40 4 12 32 33 14) ($Nx $Nf $Nz) simpleGrading  (1 1 1)   //12
+    hex (22 44 43 20 28 37 36 26) ($Nx $Nf $Nz) simpleGrading (1 1 1)  //13
+    
+    hex (4 40 46 8 14 33 50 18) ($Nx $Nb $Nz) simpleGrading (1 1 1) //14
+    hex (24 49 44 22 30 53 37 28) ($Nx $Nb $Nz) simpleGrading (1 1 1) //15 
+    
+    hex (46 40 42 47 50 33 35 51) ($Nb $Nin $Nz) simpleGrading (1 1 1) //16
+    hex (48 45 44 49 52 38 37 53) ($Nb $Nin $Nz) simpleGrading (1 1 1) //17
+    
+    hex (58 47 42 41 59 51 35 34) ($Na $Nb $Nz) simpleGrading (1 1 1) //18
+    hex (48 58 41 45 52 59 34 38) ($Na $Nb $Nz) simpleGrading (1 1 1) //19
+    
+    
+);
+
+
+
+
+edges
+(
+
+    //up
+    arc 0 3   ($e     $f $minZ)
+    arc 3  5  ($f     $e $minZ)
+    arc 10 13 ($e     $f $maxZ)
+    arc 13 15 ($f     $e $maxZ)
+    arc 6  9  ($eNeg  $f $minZ)
+    arc 9  5  ($fNeg  $e $minZ)
+    arc 16 19 ($eNeg  $f $maxZ)
+    arc 19 15 ($fNeg  $e $maxZ)
+
+    arc 1 2   ($g       $h   $minZ)
+    arc 2 4   ($h       $g   $minZ)
+    arc 11 12 ($g       $h   $maxZ)
+    arc 12 14 ($h       $g   $maxZ)
+    arc 7  8  ($gNeg    $h   $minZ)
+    arc 8  4  ($hNeg    $g   $minZ)
+    arc 17 18 ($gNeg    $h   $maxZ) 
+    arc 18 14 ($hNeg    $g   $maxZ) 
+     
+    //down
+    arc 0 21  ($e       $fNeg   $minZ)
+    arc 21 23 ($f       $eNeg   $minZ)
+    arc 10 27 ($e       $fNeg   $maxZ)
+    arc 27 29 ($f       $eNeg   $maxZ)
+    arc 6  25 ($eNeg 	$fNeg   $minZ)
+    arc 25 23 ($fNeg 	$eNeg   $minZ)
+    arc 16 31 ($eNeg 	$fNeg   $maxZ)
+    arc 31 29 ($fNeg 	$eNeg   $maxZ)
+	
+    arc 1 20  ($g        $hNeg   $minZ)
+    arc 20 22 ($h        $gNeg   $minZ)
+    arc 11 26 ($g        $hNeg   $maxZ)
+    arc 26 28 ($h        $gNeg   $maxZ) 
+    arc 7  24 ($gNeg     $hNeg   $minZ)
+    arc 24 22 ($hNeg     $gNeg   $minZ)
+    arc 17 30 ($gNeg     $hNeg   $maxZ)
+    arc 30 28 ($hNeg     $gNeg   $maxZ)  
+    
+    // Arco da malha entre o bocal e a malha ao redor do cilindro
+    arc 18 30 ($radiusBlockNeg  0 $maxZ)
+    arc 8 24  ($radiusBlockNeg  0 $minZ)
+    
+    // Saida (outlet)
+    arc 55 54 #calc "radToDeg($phi)" (0 0 1)
+    arc 57 56 #calc "radToDeg($phi)" (0 0 1)
+    
+    // resto
+    arc 54 39 #calc "45 - radToDeg($phi)/2" (0 0 1)
+    arc 56 32 #calc "45 - radToDeg($phi)/2" (0 0 1)
+    
+    arc 43 55 #calc "45 - radToDeg($phi)/2" (0 0 1)
+    arc 36 57 #calc "45 - radToDeg($phi)/2" (0 0 1)
+    
+    arc 39 40 45 (0 0 1)
+    arc 32 33 45 (0 0 1)
+    
+    arc 44 43 45 (0 0 1)
+    arc 37 36 45 (0 0 1)
+    
+    arc 40 42 45 (0 0 1)
+    arc 33 35 45 (0 0 1)
+    
+    arc 45 44 45 (0 0 1)
+    arc 38 37 45 (0 0 1)
+    
+    arc 42 41 45 (0 0 1)
+    arc 35 34 45 (0 0 1)
+    
+    arc 34 38 45 (0 0 1)
+    arc 41 45 45 (0 0 1)
+);
+
+patches
+(
+
+    wall cilindro
+    (
+        //up
+        (5 3 13 15)
+        (3 0 10 13)
+        (9 5 15 19)
+        (6 9 19 16)
+        //down
+        (21 23 29 27) 
+        (0 21 27 10)  
+        (23 25 31 29) 
+        (25 6 16 31) 
+    )
+    
+    wall dominio
+    (
+      //up
+      (54 39 32 56)
+      (39 40 33 32)
+      (40 42 35 33)
+      (42 41 34 35)
+      //down
+      (41 45 38 34)
+      (45 44 37 38)
+      (44 43 36 37)
+      (43 55 57 36)
+    )
+    
+    patch entrada
+    (
+      (53 50 46 49)
+    )
+    
+    patch saida
+    (
+      (55 54 56 57)
+    )
+	    
+    empty topo
+    (
+      (10 11 12 13)
+      (13 12 14 15)
+      (15 14 18 19)
+      (19 18 17 16)
+      (16 17 30 31)
+      (31 30 28 29)
+      (29 28 26 27)
+      (27 26 11 10) // fim do bloco
+      
+      (63 57 56 61) //entre o bloco e o outlet
+      (61 56 32 12)
+      (12 32 33 14)
+      (14 33 50 18)
+      (50 33 35 51)
+      (59 51 35 34)
+      (38 52 59 34)
+      (37 53 52 38)
+      (37 28 30 53)
+      (36 26 28 37)
+      (57 63 26 36)
+      (30 18 50 53)
+      
+    )
+    
+    empty fundo
+    (
+      (0 1 20 21)
+      (21 20 22 23)
+      (23 22 24 25)
+      (25 24 7 6)
+      (6 7 8 9)
+      (9 8 4 5)
+      (5 4 2 3)
+      (3 2 1 0)// fim do bloco
+      
+      (62 55 54 60) // Entre o bloco e o outlet
+      (62 55 43 20)
+      (20 43 44 22)
+      (22 44 49 24)
+      (49 44 45 48)
+      (58 48 45 41)
+      (42 47 58 41)
+      (40 46 47 42)
+      (40 4 8 46)
+      (40 39 2 4)
+      (39 54 60 2)
+      (8 24 49 46)
+    )
+    
+    wall bocal
+    (
+      (46 50 51 47)
+      (47 51 59 58)
+      (58 59 52 48)
+      (48 52 53 49)
+    )
+);
+
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

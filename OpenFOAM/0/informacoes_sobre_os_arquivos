@@ -1,0 +1,24 @@
+1. alphat:
+	O arquivo "alphat" se refere à condutividade térmica turbulenta cinemática. 
+	OBS.: A condutividade térmica turbulenta é o aumento da capacidade de conduzir calor devido ao escoamento tubulento. O arquivo trata de uma parede "Wall", o que me leva a pensar sobre troca de calor com as vizinhanças do sistema.
+
+2. epsilon: 
+	O arquivo "epsilon" trata da taxa de dissipação de energia cinética turbulenta.
+
+3. k:
+	O arquivo "k" trata da energia cinetica turbulenta.
+
+4. nut:
+	O arquivo "nut" trata da viscosidade turbulenta.
+
+5. p:
+	O arquivo "p" trata da pressão.
+
+6. p_rgh:
+	O arquivo "p_rgh" trata da pressão hidrostática, isso é, a pressão causada pelo peso do fluido.
+
+7. T:
+	O arquivo "T" trata da temperatura.
+
+8. U:
+	O arquivo "U" trata da velocidade em x.
