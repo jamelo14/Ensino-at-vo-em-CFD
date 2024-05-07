@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.3.0                                 |
+|  \\    /   O peration     | Version:  10.0                                  |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -121,78 +121,78 @@ nNeg	   #calc "-1.0*$n";
 vertices
 (
     //Y positivo
-    ($radius              0                 $minZ)   // 0 A
-    ($radiusBlock         0                 $minZ)   // 1 B
-    ($c                   $d                $minZ)   // 2 C
-    ($a                   $b                $minZ)   // 3 D
-    (0                    $radiusBlock      $minZ)   // 4 E
-    (0                    $radius           $minZ)   // 5 F
-    ($radiusNeg           0                 $minZ)   // 6 G
-    ($radiusBlockNeg      0                 $minZ)   // 7 H
-    ($cNeg                $d                $minZ)   // 8 I
-    ($aNeg                $b                $minZ)   // 9 J
+    ($radius              0                 $minZ)   // 0
+    ($radiusBlock         0                 $minZ)   // 1
+    ($c                   $d                $minZ)   // 2
+    ($a                   $b                $minZ)   // 3
+    (0                    $radiusBlock      $minZ)   // 4
+    (0                    $radius           $minZ)   // 5
+    ($radiusNeg           0                 $minZ)   // 6
+    ($radiusBlockNeg      0                 $minZ)   // 7
+    ($cNeg                $d                $minZ)   // 8
+    ($aNeg                $b                $minZ)   // 9
    
-    ($radius              0                 $maxZ)   // 10 K
-    ($radiusBlock         0                 $maxZ)   // 11 L
-    ($c                   $d                $maxZ)   // 12 M
-    ($a                   $b                $maxZ)   // 13 N
-    (0                    $radiusBlock      $maxZ)   // 14 O
-    (0                    $radius           $maxZ)   // 15 P
-    ($radiusNeg           0                 $maxZ)   // 16 Q
-    ($radiusBlockNeg      0                 $maxZ)   // 17 R
-    ($cNeg                $d                $maxZ)   // 18 S
-    ($aNeg                $b                $maxZ)   // 19 T
+    ($radius              0                 $maxZ)   // 10
+    ($radiusBlock         0                 $maxZ)   // 11
+    ($c                   $d                $maxZ)   // 12
+    ($a                   $b                $maxZ)   // 13
+    (0                    $radiusBlock      $maxZ)   // 14
+    (0                    $radius           $maxZ)   // 15
+    ($radiusNeg           0                 $maxZ)   // 16
+    ($radiusBlockNeg      0                 $maxZ)   // 17
+    ($cNeg                $d                $maxZ)   // 18
+    ($aNeg                $b                $maxZ)   // 19
     
     //Y negativo
-    ($c                   $dNeg             $minZ)  // 20 M1
-    ($a                   $bNeg             $minZ)  // 21 N1
-    (0                    $radiusBlockNeg   $minZ)  // 22 O1
-    (0                    $radiusNeg        $minZ)  // 23 P1
-    ($cNeg                $dNeg             $minZ)  // 24 Q1
-    ($aNeg                $bNeg             $minZ)  // 25 R1
+    ($c                   $dNeg             $minZ)   // 20
+    ($a                   $bNeg             $minZ)   // 21
+    (0                    $radiusBlockNeg   $minZ)   // 22
+    (0                    $radiusNeg        $minZ)   // 23
+    ($cNeg                $dNeg             $minZ)   // 24
+    ($aNeg                $bNeg             $minZ)   // 25
     
-    ($c                   $dNeg             $maxZ)  // 26 S1
-    ($a                   $bNeg             $maxZ)  // 27 T1
-    (0                    $radiusBlockNeg   $maxZ)  // 28 U1
-    (0                    $radiusNeg        $maxZ)  // 29 V1
-    ($cNeg                $dNeg             $maxZ)  // 30 W1
-    ($aNeg                $bNeg             $maxZ)  // 31 Z1
+    ($c                   $dNeg             $maxZ)   // 26
+    ($a                   $bNeg             $maxZ)   // 27
+    (0                    $radiusBlockNeg   $maxZ)   // 28
+    (0                    $radiusNeg        $maxZ)   // 29
+    ($cNeg                $dNeg             $maxZ)   // 30
+    ($aNeg                $bNeg             $maxZ)   // 31
     
     // João's
     // Dominio computacional
     // Y positivo
-    ($aDom               $bDom              $maxZ)   // 32 V
-    (0                   $radiusDominio     $maxZ)   // 33 W
-    ($radiusDominioNeg   0                  $maxZ)   // 34 Z
-    ($aDomNeg            $bDom              $maxZ)   // 35 A1
-    ($aDom               $bDomNeg           $maxZ)   // 36 B1
-    (0                   $radiusDominioNeg  $maxZ)   // 37 C1
-    ($aDomNeg            $bDomNeg           $maxZ)   // 38 D1
+    ($aDom               $bDom              $maxZ)   // 32
+    (0                   $radiusDominio     $maxZ)   // 33
+    ($radiusDominioNeg   0                  $maxZ)   // 34
+    ($aDomNeg            $bDom              $maxZ)   // 35
+    ($aDom               $bDomNeg           $maxZ)   // 36
+    (0                   $radiusDominioNeg  $maxZ)   // 37
+    ($aDomNeg            $bDomNeg           $maxZ)   // 38
     
     // Y negativo
-    ($aDom               $bDom              $minZ)   // 39 F1
-    (0                   $radiusDominio     $minZ)   // 40 G1
-    ($radiusDominioNeg   0                  $minZ)   // 41 H1
-    ($aDomNeg            $bDom              $minZ)   // 42 I1
-    ($aDom               $bDomNeg           $minZ)   // 43 J1
-    (0                   $radiusDominioNeg  $minZ)   // 44 K1
-    ($aDomNeg            $bDomNeg           $minZ)   // 45 L1
+    ($aDom               $bDom              $minZ)   // 39
+    (0                   $radiusDominio     $minZ)   // 40
+    ($radiusDominioNeg   0                  $minZ)   // 41
+    ($aDomNeg            $bDom              $minZ)   // 42
+    ($aDom               $bDomNeg           $minZ)   // 43
+    (0                   $radiusDominioNeg  $minZ)   // 44
+    ($aDomNeg            $bDomNeg           $minZ)   // 45
     
     // Bocal de entrada de fluido
-    ($decNeg              $let              $minZ)   // 46 A2
-    ($decMaisCeNeg        $let              $minZ)   // 47 B2
-    ($decMaisCeNeg        $leMenosLetNeg    $minZ)   // 48 C2
-    ($decNeg              $leMenosLetNeg    $minZ)   // 49 D2
-    ($decNeg              $let              $maxZ)   // 50 E2
-    ($decMaisCeNeg        $let              $maxZ)   // 51 F2
-    ($decMaisCeNeg        $leMenosLetNeg    $maxZ)   // 52 G2
-    ($decNeg              $leMenosLetNeg    $maxZ)   // 53 H2
+    ($decNeg              $let              $minZ)   // 46
+    ($decMaisCeNeg        $let              $minZ)   // 47
+    ($decMaisCeNeg        $leMenosLetNeg    $minZ)   // 48
+    ($decNeg              $leMenosLetNeg    $minZ)   // 49
+    ($decNeg              $let              $maxZ)   // 50
+    ($decMaisCeNeg        $let              $maxZ)   // 51
+    ($decMaisCeNeg        $leMenosLetNeg    $maxZ)   // 52
+    ($decNeg              $leMenosLetNeg    $maxZ)   // 53
     
     // Saida de fluido
-    ($i                   $j                $minZ)   // 54 I2
-    ($i                   $jNeg             $minZ)   // 55 J2
-    ($i                   $j                $maxZ)   // 56 K2
-    ($i                   $jNeg             $maxZ)   // 57 L2
+    ($i                   $j                $minZ)   // 54
+    ($i                   $jNeg             $minZ)   // 55
+    ($i                   $j                $maxZ)   // 56
+    ($i                   $jNeg             $maxZ)   // 57
     
     // Pontos adicionais
     ($decMaisCeNeg        $letMenosMeioLe   $minZ)   // 58 
@@ -219,44 +219,41 @@ vertices
 blocks
 (
     //Bloco de malha cilindrica
-    //hex (0  1  2  3  10 11 12 13) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 0
-    hex (0  1  60 66 10 11 61 68) ($Nblock $Nf	$Nz) simpleGrading (1 1 1)
-    hex (66 60 2  3  68 61 12 13) ($Nblock $Nf	$Nz) simpleGrading (1 1 1)
+    hex (0  1  60 66 10 11 61 68) ($Nblock $Nf	$Nz) simpleGrading (1 1 1) // 0
+    hex (66 60 2  3  68 61 12 13) ($Nblock $Nf	$Nz) simpleGrading (1 1 1) // 1
     
-    hex (3  2  4  5  13 12 14 15) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 1
-    hex (5  4  8  9  15 14 18 19) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 2
-    hex (9  8  7  6  19 18 17 16) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 3
-    hex (6  7  24 25 16 17 30 31) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 4
-    hex (25 24 22 23 31 30 28 29) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 5
-    hex (23 22 20 21 29 28 26 27) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 6
-    //hex (21 20 1  0  27 26 11 10) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 7
-    hex (21 20 62 67 27 26 63 69) ($Nblock $Nf  $Nz) simpleGrading (1 1 1)
-    hex (67 62 1  0  69 63 11 10) ($Nblock $Nf  $Nz) simpleGrading (1 1 1)
+    hex (3  2  4  5  13 12 14 15) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 2 
+    hex (5  4  8  9  15 14 18 19) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 3
+    hex (9  8  7  6  19 18 17 16) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 4
+    hex (6  7  24 25 16 17 30 31) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 5
+    hex (25 24 22 23 31 30 28 29) ($Nblock $Nb  $Nz) simpleGrading (1 1 1) // 6
+    hex (23 22 20 21 29 28 26 27) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 7
+    hex (21 20 62 67 27 26 63 69) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 8
+    hex (67 62 1  0  69 63 11 10) ($Nblock $Nf  $Nz) simpleGrading (1 1 1) // 9
     
     // Entre a bocal e o bloco
-    hex (8  46 64 7  18 50 65 17) ($Nx     $Nb  $Nz) simpleGradind (1 1 1) // 8
-    hex (7  64 49 24 17 65 53 30) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 9
+    hex (8  46 64 7  18 50 65 17) ($Nx     $Nb  $Nz) simpleGradind (1 1 1) // 10
+    hex (7  64 49 24 17 65 53 30) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 11
     
     // entre a malha do cilindro e o outlet
-    //hex (62 55 54 60 63 57 56 61) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 10
-    hex (62 55 70 1  63 57 71 11) ($Nx	   $Nf  $Nz) simpleGrading (1 1 1)
-    hex (1  70 54 60 11 71 56 61) ($Nx     $Nf  $Nz) simpleGrading (1 1 1)
+    hex (62 55 70 1  63 57 71 11) ($Nx	   $Nf  $Nz) simpleGrading (1 1 1) // 12
+    hex (1  70 54 60 11 71 56 61) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 13
     
     // resto
-    hex (60 54 39 2  61 56 32 12) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 11
-    hex (20 43 55 62 26 36 57 63) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 12
+    hex (60 54 39 2  61 56 32 12) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 14
+    hex (20 43 55 62 26 36 57 63) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 15
+ 
+    hex (2  39 40 4  12 32 33 14) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 16
+    hex (22 44 43 20 28 37 36 26) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 17
     
-    hex (2  39 40 4  12 32 33 14) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 13
-    hex (22 44 43 20 28 37 36 26) ($Nx     $Nf  $Nz) simpleGrading (1 1 1) // 14
+    hex (4  40 46 8  14 33 50 18) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 18
+    hex (24 49 44 22 30 53 37 28) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 19 
     
-    hex (4  40 46 8  14 33 50 18) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 15
-    hex (24 49 44 22 30 53 37 28) ($Nx     $Nb  $Nz) simpleGrading (1 1 1) // 16 
+    hex (46 40 42 47 50 33 35 51) ($Nb     $Nin $Nz) simpleGrading (1 1 1) // 20
+    hex (48 45 44 49 52 38 37 53) ($Nb     $Nin $Nz) simpleGrading (1 1 1) // 21
     
-    hex (46 40 42 47 50 33 35 51) ($Nb     $Nin $Nz) simpleGrading (1 1 1) // 17
-    hex (48 45 44 49 52 38 37 53) ($Nb     $Nin $Nz) simpleGrading (1 1 1) // 18
-    
-    hex (58 47 42 41 59 51 35 34) ($Na     $Nb  $Nz) simpleGrading (1 1 1) // 19
-    hex (48 58 41 45 52 59 34 38) ($Na     $Nb  $Nz) simpleGrading (1 1 1) // 20
+    hex (58 47 42 41 59 51 35 34) ($Na     $Nb  $Nz) simpleGrading (1 1 1) // 22
+    hex (48 58 41 45 52 59 34 38) ($Na     $Nb  $Nz) simpleGrading (1 1 1) // 23
     
     
 );
@@ -266,85 +263,84 @@ blocks
 
 edges
 (
-
-    //up
-    arc 0  66 22.5 (0 0 1)
-    arc 66 3  22.5 (0 0 1)
-    arc 3  5  ($f     $e $minZ)
-    arc 10 68 22.5 (0 0 1)
-    arc 68 13 22.5 (0 0 1)
-    arc 13 15 ($f     $e $maxZ)
-    arc 6  9  ($eNeg  $f $minZ)
-    arc 9  5  ($fNeg  $e $minZ)
-    arc 16 19 ($eNeg  $f $maxZ)
-    arc 19 15 ($fNeg  $e $maxZ)
-
-    arc 20 62 22.5 (0 0 1)
-    arc 62 1  22.5 (0 0 1)
-    arc 2 4   ($h       $g   $minZ)
-    arc 11 61 22.5 (0 0 1)
-    arc 61 12 22.5 (0 0 1)
-    arc 12 14 ($h       $g   $maxZ)
-    arc 7  8  ($gNeg    $h   $minZ)
-    arc 8  4  ($hNeg    $g   $minZ)
-    arc 17 18 ($gNeg    $h   $maxZ) 
-    arc 18 14 ($hNeg    $g   $maxZ) 
-     
-    //down
-    arc 21 67 22.5 (0 0 1)
-    arc 67 0  22.5 (0 0 1)
-    arc 21 23 ($f       $eNeg   $minZ)
-    arc 27 69 22.5 (0 0 1)
-    arc 69 10 22.5 (0 0 1) 
-    arc 27 29 ($f       $eNeg   $maxZ)
-    arc 6  25 ($eNeg 	$fNeg   $minZ)
-    arc 25 23 ($fNeg 	$eNeg   $minZ)
-    arc 16 31 ($eNeg 	$fNeg   $maxZ)
-    arc 31 29 ($fNeg 	$eNeg   $maxZ)
+	//up
+	arc	3	5	($f 	$e		$minZ)
+	arc	13	15	($f	    $e 		$maxZ)
+	arc	6	9	($eNeg	$f		$minZ)
+	arc	9	5	($fNeg	$e		$minZ)
+	arc	16	19	($eNeg	$f		$maxZ)
+	arc	19	15	($fNeg	$e		$maxZ)
+	arc	10	68	22.5	(0	0	1)
+	arc	68	13	22.5	(0	0	1)
+	arc	0	66	22.5	(0	0	1)
+	arc	66	3	22.5	(0	0	1)
 	
-    arc 1  60 22.5 (0 0 1)
-    arc 60 2  22.5 (0 0 1)
-    arc 20 22 ($h        $gNeg   $minZ)
-    arc 26 63 22.5 (0 0 1)
-    arc 63 11 22.5 (0 0 1)
-    arc 26 28 ($h        $gNeg   $maxZ) 
-    arc 7  24 ($gNeg     $hNeg   $minZ)
-    arc 24 22 ($hNeg     $gNeg   $minZ)
-    arc 17 30 ($gNeg     $hNeg   $maxZ)
-    arc 30 28 ($hNeg     $gNeg   $maxZ)  
+	arc	2	4	($h	    $g		$minZ)
+	arc	12	14	($h	    $g		$maxZ)
+	arc	7	8	($gNeg	$h		$minZ)
+	arc	8	4	($hNeg	$g		$minZ)
+	arc	17	18	($gNeg	$h		$maxZ)	
+	arc	18	14	($hNeg	$g		$maxZ)	
+	arc	11	61	22.5	(0	0	1)
+	arc	61	12	22.5	(0	0	1)
+	arc	20	62	22.5	(0	0	1)
+	arc	62	1	22.5	(0	0	1)
+	
+	//down
+	arc	21	23	($f	    $eNeg	$minZ)
+	arc	27	29	($f		$eNeg	$maxZ)
+	arc	6	25	($eNeg	$fNeg	$minZ)
+	arc	25	23	($fNeg	$eNeg	$minZ)
+	arc	16	31	($eNeg	$fNeg	$maxZ)
+	arc	31	29	($fNeg	$eNeg	$maxZ)
+	arc	27	69	22.5	(0	0	1)
+	arc	69	10	22.5	(0	0	1)	
+	arc	21	67	22.5	(0	0	1)
+	arc	67	0	22.5	(0	0	1)
+	
+	arc	20	22	($h		$gNeg	$minZ)
+	arc	26	28	($h		$gNeg	$maxZ)	
+	arc	7	24	($gNeg	$hNeg	$minZ)
+	arc	24	22	($hNeg	$gNeg	$minZ)
+	arc	17	30	($gNeg	$hNeg	$maxZ)
+	arc	30	28	($hNeg	$gNeg	$maxZ)	
+	arc	26	63	22.5	(0	0	1)
+	arc	63	11	22.5	(0	0	1)
+	arc	1	60	22.5	(0	0	1)
+	arc	60	2	22.5	(0	0	1)
     
     
     // Saida (outlet)
-    arc 55 70 #calc "(radToDeg($phi))/2" (0 0 1)
-    arc 70 54 #calc "(radToDeg($phi))/2" (0 0 1)
+    arc	55	70	#calc "(radToDeg($phi))/2" 		(0 0 1)
+    arc	70	54	#calc "(radToDeg($phi))/2" 		(0 0 1)
     
-    arc 57 71 #calc "(radToDeg($phi))/2" (0 0 1)
-    arc 71 56 #calc "(radToDeg($phi))/2" (0 0 1)
+    arc	57	71	#calc "(radToDeg($phi))/2" 		(0 0 1)
+    arc	71	56	#calc "(radToDeg($phi))/2" 		(0 0 1)
       
     // resto
-	arc 54 39 #calc "45 - radToDeg($phi)/2" (0 0 1)
-    arc 56 32 #calc "45 - radToDeg($phi)/2" (0 0 1)
+	arc	54	39	#calc "45 - radToDeg($phi)/2" 	(0 0 1)
+    arc	56	32	#calc "45 - radToDeg($phi)/2" 	(0 0 1)
     
-    arc 43 55 #calc "45 - radToDeg($phi)/2" (0 0 1)
-    arc 36 57 #calc "45 - radToDeg($phi)/2" (0 0 1)
+    arc	43	55	#calc "45 - radToDeg($phi)/2" 	(0 0 1)
+    arc	36	57	#calc "45 - radToDeg($phi)/2"	(0 0 1)
     
-    arc 39 40 45 (0 0 1)
-    arc 32 33 45 (0 0 1)
-    
-    arc 44 43 45 (0 0 1)
-    arc 37 36 45 (0 0 1)
-    
-    arc 40 42 45 (0 0 1)
-    arc 33 35 45 (0 0 1)
-    
-    arc 45 44 45 (0 0 1)
-    arc 38 37 45 (0 0 1)
-    
-    arc 42 41 45 (0 0 1)
-    arc 35 34 45 (0 0 1)
-    
-    arc 34 38 45 (0 0 1)
-    arc 41 45 45 (0 0 1)
+	arc	39	40	45		(0	0	1)
+	arc	32	33	45		(0	0	1)
+	
+	arc	44	43	45		(0	0	1)
+	arc	37	36	45		(0	0	1)
+	
+	arc	40	42	45		(0	0	1)
+	arc	33	35	45		(0	0	1)
+	
+	arc	45	44	45		(0	0	1)
+	arc	38	37	45		(0	0	1)
+	
+	arc	42	41	45		(0	0	1)
+	arc	35	34	45		(0	0	1)
+	
+	arc	34	38	45		(0	0	1)
+	arc	41	45	45		(0	0	1)
 );
 
 boundary
@@ -418,9 +414,9 @@ boundary
 			(31 30 28 29)
 			(29 28 26 27)
 			(27 26 63 69)
-			(69 63 11 10) //fim do bloco
-			(63 57 71 11) //entre bloco e outlet
-			(11 71 56 61) //entre bloco e outlet
+			(69 63 11 10) 
+			(63 57 71 11) 
+			(11 71 56 61) 
 			(61 56 32 12)
 			(12 32 33 14)
 			(14 33 50 18)
@@ -451,9 +447,9 @@ boundary
 			(9  8  4  5 )
 			(5  4  2  3 )
 			(3  2  60 66)
-			(66 60 1  0 ) // fim do bloco 
-			(60 54 70 1 ) // Entre o bloco e o outlet
-			(1  70 55 62) // Entre o bloco e o outlet
+			(66 60 1  0 )  
+			(60 54 70 1 ) 
+			(1  70 55 62) 
 			(62 55 43 20)
 			(20 43 44 22)
 			(22 44 49 24)
@@ -488,7 +484,6 @@ mergePatchPairs
 );
 
 // ************************************************************************* //
-
 
 
 
